@@ -1,0 +1,47 @@
+@extends('layouts.default')
+@section('title', 'Redefinir senha')
+@section('classe-body', 'login-page bg-body-secondary')
+@section('content')
+    <main class="login-box">
+        <h1 class="login-logo">
+            <b>Redefinir senha</b>
+        </h1>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Defina sua nova senha.</p>
+
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
+                @endif
+
+                <form action="{{ route('password.change') }}" method="post">
+                    @csrf
+                    <label class="visually-hidden" for="password">Nova senha</label>
+                    <div class="input-group mb-3">
+                        <input id="password" name="password" type="password" class="form-control" placeholder="Nova senha" />
+                        <div class="input-group-text">
+                            <span class="bi bi-lock-fill"></span>
+                        </div>
+                    </div>
+                    <label class="visually-hidden" for="password_confirmation">Confirmar nova senha</label>
+                    <div class="input-group mb-3">
+                        <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Confirmar nova senha" />
+                        <div class="input-group-text">
+                            <span class="bi bi-lock-fill"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Redefinir senha</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </main>
+@endsection
